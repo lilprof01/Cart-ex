@@ -4,36 +4,10 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
-const Tile = () => {
-  const [selected, setSelected] = useState(null);
-  const [data, setData] = useState(null);
-  const [count, setCount] = useState({});
-  
-  const totalCount = Object.values(count).reduce((acc, counts) => acc + counts, 0);
-
-  const decrease = (id) => {
-    if (count[id] > 0) {
-      setCount(prevCount => ({ ...prevCount, [id]: prevCount[id] - 1 }));
-    }
-  };
-
-  const increase = (id) => {
-    setCount(prevCount => ({ ...prevCount, [id]: (prevCount[id] || 0) + 1 }));
-  };
-
-  const handleSelect = (id) => {
-    setSelected(id === selected ? null : id);
-  };
-
-  useEffect(() => {
-    fetch("/data.json")
-      .then((Response) => Response.json())
-      .then((data) => setData(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+const Tile = ({ data, addToCart, removeFromCart, selected, count, handleSelect }) => {
 
   if (!data) {
-    return <div className="text-5xl">Loading...</div>;
+    return <div className="text-5xl text-[#410f0f] absolute top-[50%] left-20 -translate-y-[50%]">Loading...</div>;
   }
 
   return (
@@ -60,7 +34,7 @@ const Tile = () => {
               {selected === data.id && (
                 <div className="absolute bottom-[-12px] left-1/2 -translate-x-1/2 text-white text-nowrap bg-[brown] rounded-2xl h-6 px-2 py-3.5 flex items-center align-middle hover:cursor-pointer hover:border-[brown] transition-all justify-between w-28">
                   <div
-                    onClick={() => decrease(data.id)}
+                    onClick={() => removeFromCart(data)}
                     className="border border-white bg-[brown] hover:bg-white hover:text-[brown] rounded-[100%] h-5 w-5 flex items-center justify-center text-xs"
                   >
                     <FontAwesomeIcon icon={faMinus} />
@@ -69,7 +43,7 @@ const Tile = () => {
                     {count[data.id] || 0}
                   </p>
                   <div
-                    onClick={() => increase(data.id)}
+                    onClick={() => addToCart(data)}
                     className="border border-white bg-[brown] hover:bg-white hover:text-[brown] rounded-[100%] h-5 w-5 flex items-center align-middle justify-center text-xs"
                   >
                     <FontAwesomeIcon icon={faPlus} />

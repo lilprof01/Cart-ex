@@ -6,3 +6,12 @@ body{
   user-select: none;
   background-color: #fcf9f7;
 }
+
+.remove:hover{
+  cursor: pointer;
+  border-color: brown;
+}
+
+.remove:hover path{
+  fill: #f56565;
+}
