@@ -13,18 +13,18 @@ const Tile = ({ data, addToCart, removeFromCart, selected, count, handleSelect }
   return (
     <div className="w-full flex flex-col gap-8">
       <h1 className="text-4xl font-semibold text-[#410f0f]">Deserts</h1>
-      <div className="grid grid-row-3 grid-cols-3 w-full gap-5">
+      <div className="grid sm:grid-row-3 sm:grid-cols-3 w-full gap-5">
         {data.map((data) => (
           <div key={data.id} className="h-full w-full flex flex-col gap-6">
             <div
               style={{
                 backgroundImage: `url(${data.image.desktop})`,
               }}
-              className="relative h-44 bg-cover rounded-lg w-full"
+              className={`relative h-52 sm:h-44 bg-cover rounded-lg w-full ${count[data.id] > 0 ? "border-2 border-[brown]" : ""}`}
             >
               <div
                 onClick={() => handleSelect(data.id)}
-                className={`absolute bottom-[-12px] left-1/2 -translate-x-1/2 text-sm text-[#410f0f] text-nowrap border border-[#410f0f] rounded-2xl h-6 px-4 py-3 bg-white flex gap-1 items-center align-middle hover:cursor-pointer hover:border-[brown] hover:text-[brown] transition-all ${
+                className={`absolute bottom-[-20px] sm:bottom-[-12px] left-1/2 -translate-x-1/2 text-md sm:text-sm text-[#410f0f] text-nowrap border border-[#410f0f] rounded-2xl h-6 sm:px-4 sm:py-3 p-5 bg-white flex gap-1 items-center align-middle hover:cursor-pointer hover:border-[brown] hover:text-[brown] transition-all ${
                   selected === data.id ? "hidden" : ""
                 }`}
               >

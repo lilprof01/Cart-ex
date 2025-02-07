@@ -1,7 +1,7 @@
 import React from "react";
 import CartItem from "./cartitem";
 
-const Cart = ({ cart, count, totalCount, setCart }) => {
+const Cart = ({ cart, count, totalCount, handleModal }) => {
   const totalPrice = Object.values(cart)
     .reduce((acc, item) => acc + item.price * count[item.id], 0)
     .toFixed(2);
@@ -16,7 +16,7 @@ const Cart = ({ cart, count, totalCount, setCart }) => {
     // };
 
   return (
-    <div className="flex flex-col justify-between align-middle lg:max-h-full w-4/6 bg-white rounded-lg p-5 shadow-md">
+    <div className="flex flex-col justify-between align-middle lg:max-h-full w-full sm:w-4/6 bg-white rounded-lg p-5 shadow-md">
       <h2 className="font-semibold text-3xl text-[brown]">
         Your Cart ({totalCount})
       </h2>
@@ -121,7 +121,7 @@ const Cart = ({ cart, count, totalCount, setCart }) => {
             </div>
             This is a carbon-neutral delivery
           </div>
-          <button className="bg-[brown] hover:bg-[#401f0f] text-white w-full px-5 py-2 rounded-full">
+          <button onClick={handleModal} className="bg-[brown] hover:bg-[#401f0f] text-white w-full px-5 py-2 rounded-full">
             Confirm Order
           </button>
         </>
