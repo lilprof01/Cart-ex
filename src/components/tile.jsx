@@ -12,7 +12,7 @@ const Tile = ({ data, addToCart, removeFromCart, selected, count, handleSelect }
 
   return (
     <div className="w-full flex flex-col gap-8">
-      <h1 className="text-4xl font-semibold text-[#410f0f]">Deserts</h1>
+      <h1 className="text-5xl font-bold text-[#410f0f]">Desserts</h1>
       <div className="grid sm:grid-row-3 sm:grid-cols-3 w-full gap-5">
         {data.map((data) => (
           <div key={data.id} className="h-full w-full flex flex-col gap-6">

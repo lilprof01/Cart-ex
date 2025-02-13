@@ -1,19 +1,18 @@
 import React from "react";
 import CartItem from "./cartitem";
 
-const Cart = ({ cart, count, totalCount, handleModal }) => {
+const Cart = ({ cart, count, setCount, totalCount, handleModal,setCart }) => {
   const totalPrice = Object.values(cart)
     .reduce((acc, item) => acc + item.price * count[item.id], 0)
     .toFixed(2);
 
 
-
-    // const removeItem = (id) => {
-    //   const newCart = { ...cart };
-    //   delete newCart[id];
-    //   setCart(newCart);
-    //   console.log('item removed')
-    // };
+    const removeItem = (id) => {
+      const newCart = cart.filter(item => item.id !== id);
+      setCount(prevCount => ({ ...prevCount, [id]: 0 }));
+      setCart(newCart);
+      console.log('item removed')
+    };
 
   return (
     <div className="flex flex-col justify-between align-middle lg:max-h-full w-full sm:w-4/6 bg-white rounded-lg p-5 shadow-md">
@@ -84,7 +83,7 @@ const Cart = ({ cart, count, totalCount, handleModal }) => {
         </>
       ) : (
         <>
-          {cart.filter(item => item.quantity > 0).map((item) => (
+          {Object.values(cart).filter(item => item.quantity > 0).map((item) => (
             
             <CartItem
               name={item.name}

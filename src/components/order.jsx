@@ -12,7 +12,7 @@ const Order = ({ cart, count, handleModal, modal }) => {
 
   return (
     modal && (
-      <div className="flex flex-col gap-4 sm:absolute lg:top-[50%] lg:left-[50%] lg:-translate-x-[50%] lg:-translate-y-[50%] bg-white p-5 rounded-lg">
+      <div className="z-50 modal flex flex-col gap-4 fixed sm:top-[50%] sm:left-[50%] sm:-translate-x-[50%] sm:-translate-y-[50%] bg-white p-5 rounded-lg sm:shadow-xl">
         <div>
           <svg
             width="48"
@@ -32,14 +32,16 @@ const Order = ({ cart, count, handleModal, modal }) => {
           </svg>
         </div>
         <div>
-          <h2 className="font-bold text-3xl">Order Confirmed</h2>
-          <p className="text-sm opacity-65">We hope you enjoy your food!</p>
+          <h2 className="font-bold text-5xl sm:text-3xl">Order Confirmed</h2>
+          <p className="sm:text-sm opacity-65 text-xl my-4 sm:m-0">
+            We hope you enjoy your food!
+          </p>
         </div>
-        <div className="lg:w-[30vw] flex flex-col justify-between align-middle gap-4 bg-[#fcf9f7] p-4 rounded-md">
+        <div className="lg:w-[30vw] flex flex-col justify-between align-middle gap-4 bg-[#fcf9f7] p-4 rounded-md modal-content">
           {cart
             .filter((item) => item.quantity > 0)
             .map((item) => (
-              <div className="flex justify-between align-middle items-center gap-4 border-b border-[#8080804d] pb-2">
+              <div className="flex justify-between align-middle items-center gap-4 border-b border-[#8080804d] p-4 lg:p-0 lg:pb-2">
                 <img src={item.image.desktop} className="w-8 h-8" />
                 <div className="flex-1 flex flex-col align-middle">
                   <p className="text-sm font-medium">{item.name}</p>
@@ -53,10 +55,10 @@ const Order = ({ cart, count, handleModal, modal }) => {
                 </p>
               </div>
             ))}
-          <div className="flex justify-between py-3">
-            <p className="text-sm">Order Total</p>
-            <p className="text-2xl font-semibold text-[#410f0f]">${totalPrice}</p>
-          </div>
+        </div>
+        <div className="flex justify-between p-3">
+          <p className="text-md">Order Total</p>
+          <p className="text-2xl font-bold text-[#410f0f]">${totalPrice}</p>
         </div>
         <button
           onClick={handleReload}

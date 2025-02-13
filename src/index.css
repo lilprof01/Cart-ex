@@ -15,3 +15,31 @@ body{
 .remove:hover path{
   fill: #f56565;
 }
+
+@media (max-width: 500px){
+  .modal{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: 0px -100px 2px 2000px rgba(0, 0, 0, 0.674);
+  }
+}
+
+@media (min-width: 501px) and (max-width: 768px){
+  .modal{
+    position: fixed;
+  }
+}
+
+.modal-content{
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+@media (min-width: 1023px){
+  .modal-content{
+    max-height: 300px;
+  }
+}

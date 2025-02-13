@@ -25,18 +25,18 @@ const Page = () => {
   }, []);
 
   const removeFromCart = (data) => {
-    const item = cart.find((item) => item.id === data.id);
+    const item = Object.values(cart).find((item) => item.id === data.id);
     
     if (item && item.quantity > 1) {
       setCart(          
-        cart.map((item) =>
+        Object.values(cart).map((item) =>
           item.id === data.id
             ? { ...item, quantity: item.quantity - 1 }
             : item
         )
       );
     } else {
-      setCart(cart.filter((item) => item.id !== data.id));
+      setCart(Object.values(cart).filter((item) => item.id !== data.id));
     }
 
     const decrease = (id) => {
@@ -53,12 +53,12 @@ const Page = () => {
   }
 
   const addToCart = (data) => {
-    const item = cart.find((item) => item.id === data.id);
+    const item = Object.values(cart).find((item) => item.id === data.id);
     
     if (item) {
       // If it exists, update the quantity
       setCart(
-        cart.map((item) =>
+        Object.values(cart).map((item) =>
           item.id === data.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
@@ -86,7 +86,7 @@ const Page = () => {
     <main className='flex flex-col lg:flex-row justify-between items-center sm:items-start align-middle p-10 lg:px-20 lg:py-10 gap-10'>
       <Tile cart={cart} data={data} count={count} removeFromCart={removeFromCart} selected={selected} handleSelect={handleSelect} addToCart={addToCart} totalCount={totalCount} />
       
-      <Cart cart={cart} data={data} handleSelect={handleSelect} addToCart={addToCart} setCart={setCart} count={count} totalCount={totalCount} handleModal={handleModal} />
+      <Cart cart={cart} data={data} handleSelect={handleSelect} addToCart={addToCart} setCart={setCart} count={count} setCount={setCount} totalCount={totalCount} handleModal={handleModal} />
 
       <Order cart={cart} data={data} count={count} handleModal={handleModal} modal={modal} />
     </main>
