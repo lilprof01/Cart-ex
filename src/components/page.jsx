@@ -82,6 +82,10 @@ const Page = () => {
     setModal(!modal);
   }
 
+  if (!data) {
+    return <div className="text-5xl text-[#410f0f] absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%]">Loading...</div>;
+  }
+
   return (
     <main className='flex flex-col lg:flex-row justify-between items-center sm:items-start align-middle p-10 lg:px-20 lg:py-10 gap-10'>
       <Tile cart={cart} data={data} count={count} removeFromCart={removeFromCart} selected={selected} handleSelect={handleSelect} addToCart={addToCart} totalCount={totalCount} />

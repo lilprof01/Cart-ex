@@ -6,10 +6,6 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const Tile = ({ data, addToCart, removeFromCart, selected, count, handleSelect }) => {
 
-  if (!data) {
-    return <div className="text-5xl text-[#410f0f] absolute top-[50%] left-20 -translate-y-[50%]">Loading...</div>;
-  }
-
   return (
     <div className="w-full flex flex-col gap-8">
       <h1 className="text-5xl font-bold text-[#410f0f]">Desserts</h1>
